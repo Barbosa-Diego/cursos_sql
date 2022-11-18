@@ -30,3 +30,17 @@ VALUES
 ('Roberto','1996-04-05','M','65','1.70','Brasil'),
 ('Sara','1999-05-29','F','58','1.65','Brasil'),
 ('Ricardo','2004-07-01','M','98','1.77','Angola');
+
+CREATE TABLE IF NOT EXISTS cursos(
+nome VARCHAR(30) NOT NULL UNIQUE,
+descricao TEXT,
+carga INT UNSIGNED,
+totaulas INT,
+ano YEAR DEFAULT '2016'
+) DEFAULT CHARSET = utf8;
+
+ALTER TABLE cursos
+ADD COLUMN idcurso int FIRST;
+
+ALTER TABLE cursos
+ADD PRIMARY KEY (idcurso);
