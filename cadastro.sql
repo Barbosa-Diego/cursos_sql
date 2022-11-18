@@ -44,3 +44,15 @@ ADD COLUMN idcurso int FIRST;
 
 ALTER TABLE cursos
 ADD PRIMARY KEY (idcurso);
+
+INSERT INTO cursos VALUES
+('1','HTML5','CursodeHTML5','40','37','2014'),
+('2','Algoritmos','LógicadeProgamação','20','15','2014'),
+('3','Photoshop','DicasdePhotoshopCC','10','8','2014'),
+('4','PHP','CursodePHPparainiciantes','40','20','2010'),
+('5','Java','IntroduçãoàLinguagemJava','10','29','2000'),
+('6','MySQL','BancodeDadosMySQL','30','15','2016'),
+('7','Word','CursocompletodeWord','40','30','2016'),
+('8','Sapateado','DançasRítmicas','40','37','2018'),
+('9','CozinhaÁrabe','AprenderafazerKibe','40','30','2018'),
+('10','YouTuber','Mas é cada coisa que eu tenho que escrever aqui','5','2','2018');
