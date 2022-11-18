@@ -37,3 +37,7 @@ VALUES
 ('Pasta de Dente 90g','2.93','1.36','3'),
 ('Sabonete em Barra 85g','3.86','1.50','3'),
 ('Desodorante Aerosol Antitranspirante','16.89','7.80','3');
+
+SELECT P.id, P.descricao, P.precovenda, C.descricao FROM PRODUTOS P
+INNER JOIN CATEGORIA C ON C.id = P.id_categoria
+WHERE P.id_categoria = 1;
