@@ -56,3 +56,43 @@ INSERT INTO cursos VALUES
 ('8','Sapateado','DançasRítmicas','40','37','2018'),
 ('9','CozinhaÁrabe','AprenderafazerKibe','40','30','2018'),
 ('10','YouTuber','Mas é cada coisa que eu tenho que escrever aqui','5','2','2018');
+
+UPDATE cursos
+SET descricao = 'Curso de HTML5'
+WHERE idcurso = '1'
+LIMIT 1;
+
+UPDATE cursos
+SET descricao = 'Lógica de Programação'
+WHERE idcurso = '2'
+LIMIT 1;
+
+UPDATE cursos
+SET descricao = 'Lógica de Programação'
+WHERE idcurso = '2'
+LIMIT 1;
+
+UPDATE cursos
+SET descricao = 'Dicas de Photoshop CC'
+WHERE idcurso = '3'
+LIMIT 1;
+
+UPDATE cursos
+SET descricao = 'Curso de PHP para Iniciantes', ano = '2015'
+WHERE idcurso = '4'
+LIMIT 1;
+
+UPDATE cursos
+SET descricao = 'Introdução à Linguagem Java', carga = '40', ano = '2015'
+WHERE idcurso = '5'
+LIMIT 1;
+
+UPDATE cursos
+SET descricao = 'Banco de Dados MySQL'
+WHERE idcurso = '6'
+LIMIT 1;
+
+UPDATE cursos
+SET descricao = 'Curso Completo de Word'
+WHERE idcurso = '7'
+LIMIT 1;
