@@ -68,11 +68,6 @@ WHERE idcurso = '2'
 LIMIT 1;
 
 UPDATE cursos
-SET descricao = 'Lógica de Programação'
-WHERE idcurso = '2'
-LIMIT 1;
-
-UPDATE cursos
 SET descricao = 'Dicas de Photoshop CC'
 WHERE idcurso = '3'
 LIMIT 1;
