@@ -96,3 +96,6 @@ UPDATE cursos
 SET descricao = 'Curso Completo de Word'
 WHERE idcurso = '7'
 LIMIT 1;
+
+DELETE FROM cursos
+WHERE idcurso IN(8,9,10);
