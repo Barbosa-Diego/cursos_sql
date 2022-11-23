@@ -21,7 +21,7 @@ id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 bairro VARCHAR(40),
 rua VARCHAR(50),
 numero INT,
-cep INT,
+cep INT
 )DEFAULT CHARSET = utf8;
 
 INSERT INTO pessoas
