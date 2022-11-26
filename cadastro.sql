@@ -102,3 +102,10 @@ LIMIT 1;
 
 DELETE FROM cursos
 WHERE idcurso IN(8,9,10);
+
+DROP TABLE cursos;
+DROP TABLE pessoas;
+
+/* Após dropar as duas tabelas, baixar no diretório dumps o arquivo Dump-CeV01.sql, em seguida abrir o terminal linux e digitar o comando a seguir */
+/* À partir disto o banco cadastro ira receber duas novas tabelas com mais informações para ser feito exercícios de consulta */
+sudo mysql -u root -p cadastro < Dump-CeV01.sql
