@@ -1,0 +1,1 @@
+Esse repositório tem por objetivo organizar os arquivos do curso de Banco de Dados MySQL, parte do material utilizado são do canal do <a href="https://www.youtube.com/playlist?list=PLHz_AreHm4dkBs-795Dsgvau_ekxg8g1r"> YouTube</a>, também é possível fazer o acesso ao conteúdo pela plataforma <a href="https://www.cursoemvideo.com/"> Curso em Vídeo</a>.
