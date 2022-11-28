@@ -109,3 +109,30 @@ DROP TABLE pessoas;
 /* Após dropar as duas tabelas, baixar no diretório dumps o arquivo Dump-CeV01.sql, em seguida abrir o terminal linux e digitar o comando a seguir */
 /* À partir disto o banco cadastro ira receber duas novas tabelas com mais informações para ser feito exercícios de consulta */
 sudo mysql -u root -p cadastro < Dump-CeV01.sql
+
+/* Deste ponto será feito testes de consultas para a prática do uso do comando select */
+
+SELECT * FROM cursos
+WHERE carga BETWEEN '20' AND '30'
+ORDER BY nome;
+
+SELECT * FROM cursos
+WHERE carga IN (20,30,40)
+ORDER BY ano;
+
+SELECT * FROM cursos
+WHERE carga > 10 AND ano < 2014;
+
+SELECT * FROM cursos
+WHERE descricao
+LIKE '%to%';
+
+SELECT DISTINCT nacionalidade
+FROM gafanhotos
+ORDER BY nacionalidade DESC;
+
+SELECT * FROM cursos
+WHERE (
+SELECT COUNT(*)
+WHERE ano <'2015');
+
