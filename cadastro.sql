@@ -135,4 +135,72 @@ SELECT * FROM cursos
 WHERE (
 SELECT COUNT(*)
 WHERE ano <'2015');
+/* Enfim, agora sim uma lista com exercícios básicos de consultas */
+/* 1) Uma lista com o nome de todos os gafanhotos Mulheres. */
+SELECT nome FROM gafanhotos
+WHERE sexo = 'F';
+
+/* 2) Uma lista com os dados de todos aqueles que nasceram entre 1/Jan/2000 e 31/Dez/2015. */
+SELECT * FROM gafanhotos
+WHERE nascimento BETWEEN '2000-01-01'
+AND '2015-12-31';
+
+/* 3) Uma lista com o nome de todos os homens que trabalham como programadores.*/
+SELECT nome FROM gafanhotos
+WHERE profissao = 'programador'
+AND sexo = 'M';
+
+/* 4) Uma lista com os dados de todas as mulheres que nasceram no Brasil e que têm seu nome iniciando com a letra J. */
+SELECT * FROM gafanhotos
+WHERE nome like 'J%'
+AND sexo = 'F'
+AND nacionalidade = 'Brasil';
+
+/* 5) Uma lista com o nome e nacionalidade de todos os homens que têm Silva no nome, não nasceram no Brasil e pesam menos de 100 Kg. */
+SELECT * FROM gafanhotos
+WHERE nome like '%Silva%'
+AND sexo = 'M'
+AND NOT nacionalidade = 'Brasil'
+AND peso < '100.00';
+
+/* 6) Qual é a maior altura entre gafanhotos Homens que moram no Brasil? */
+SELECT * FROM gafanhotos
+WHERE sexo = 'M'
+AND nacionalidade = 'Brasil'
+ORDER BY altura;
+
+SELECT MAX(altura)
+FROM gafanhotos
+WHERE sexo = 'M'
+AND nacionalidade = 'Brasil';
+
+/* 7) Qual é a média de peso dos gafanhotos cadastrados? */
+SELECT * FROM gafanhotos
+WHERE sexo = 'M'
+AND nacionalidade = 'Brasil'
+ORDER BY peso;
+
+SELECT AVG(peso)
+FROM gafanhotos
+WHERE sexo = 'M'
+AND nacionalidade = 'Brasil';
+
+/* 8) Qual é o menor peso entre os gafanhotos Mulheres que nasceram fora do Brasil e entre 01/Jan/1990 e 31/Dez/2000? */
+SELECT * FROM gafanhotos
+WHERE sexo = 'F' 
+AND nascimento BETWEEN '1990-01-01' AND '2000-12-31'
+AND nacionalidade <> 'Brasil';
+
+SELECT MIN(peso)
+FROM gafanhotos
+WHERE sexo = 'F'
+AND nascimento BETWEEN '1990-01-01' AND '2000-12-31'
+AND nacionalidade <> 'Brasil';
+
+/* 9) Quantas gafanhotos Mulheres tem mais de 1.90cm de altura? */
+SELECT * FROM gafanhotos
+WHERE (
+SELECT COUNT(*)
+WHERE sexo = 'F'
+AND altura > '1.90');
 
