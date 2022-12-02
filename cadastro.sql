@@ -256,4 +256,9 @@ ORDER BY COUNT(*);
 
 /* 13) Uma lista agrupada pela altura dos gafanhotos, mostrando quantas pessoas pesam mais de 100Kg e que estão acima da média de altura 
 de todos os cadastrados. */
-
+SELECT id, altura, COUNT(*)
+FROM gafanhotos
+WHERE peso > '100.00'
+AND altura > (SELECT AVG(altura) from gafanhotos)
+GROUP BY altura, id
+ORDER BY altura;
