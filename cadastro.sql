@@ -204,3 +204,26 @@ SELECT COUNT(*)
 WHERE sexo = 'F'
 AND altura > '1.90');
 
+/* Retornando a mais alguma consultas de testes */
+SELECT MAX(carga)
+FROM cursos;
+
+SELECT MIN(carga)
+FROM cursos;
+
+FROM cursos
+WHERE ano = '2016';
+
+SELECT AVG(totaulas)
+FROM cursos
+WHERE ano = '2016';
+
+SELECT totaulas, COUNT(*)
+FROM cursos
+GROUP BY totaulas
+ORDER BY totaulas;
+
+SELECT ano, COUNT(*) FROM cursos
+GROUP BY ano
+HAVING COUNT(ano) >= 5
+ORDER BY COUNT(*);
