@@ -313,3 +313,9 @@ WHERE id = '9';
 UPDATE cadastro.gafanhotos
 SET cursopreferido = '30'
 WHERE id = '10';
+
+SELECT g.nome, g.cursopreferido, c.nome, c.ano
+FROM gafanhotos AS g
+INNER JOIN cursos AS c
+ON c.idcurso = g.cursopreferido
+ORDER BY g.nome;
