@@ -314,8 +314,21 @@ UPDATE cadastro.gafanhotos
 SET cursopreferido = '30'
 WHERE id = '10';
 
+/* INNER JOIN */
 SELECT g.nome, g.cursopreferido, c.nome, c.ano
 FROM gafanhotos AS g
 INNER JOIN cursos AS c
 ON c.idcurso = g.cursopreferido
 ORDER BY g.nome;
+
+/* LEFT JOIN */
+SELECT gafanhotos.nome, gafanhotos.cursopreferido, cursos.nome, cursos.ano
+FROM gafanhotos
+LEFT OUTER JOIN cursos
+ON cursos.idcurso = gafanhotos.cursopreferido;
+
+/* RIGHT JOIN */
+SELECT gafanhotos.nome, gafanhotos.cursopreferido, cursos.nome, cursos.ano
+FROM gafanhotos
+RIGHT OUTER JOIN cursos
+ON cursos.idcurso = gafanhotos.cursopreferido;
