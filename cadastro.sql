@@ -262,3 +262,13 @@ WHERE peso > '100.00'
 AND altura > (SELECT AVG(altura) from gafanhotos)
 GROUP BY altura, id
 ORDER BY altura;
+
+/* Criando uma coluna e referenciando a mesma com uma chave estrangeira */
+
+ALTER TABLE gafanhotos
+ADD COLUMN cursopreferido INT;
+
+ALTER TABLE gafanhotos
+ADD FOREIGN KEY (cursopreferido)
+REFERENCES cursos(idcurso);
+
