@@ -272,3 +272,44 @@ ALTER TABLE gafanhotos
 ADD FOREIGN KEY (cursopreferido)
 REFERENCES cursos(idcurso);
 
+/* Referenciando chave estrangeira */
+
+UPDATE gafanhotos
+SET cursopreferido = '6'
+WHERE id = '1'
+
+UPDATE gafanhotos
+SET cursopreferido = '22'
+WHERE id IN (2,11);
+
+UPDATE cadastro.gafanhotos
+SET cursopreferido = '12'
+WHERE id = '3';
+
+UPDATE cadastro.gafanhotos
+SET cursopreferido = '7'
+WHERE id = '4';
+
+UPDATE cadastro.gafanhotos
+SET cursopreferido = '1'
+WHERE id = '5';
+
+UPDATE cadastro.gafanhotos
+SET cursopreferido = '8'
+WHERE id = '6';
+
+UPDATE cadastro.gafanhotos
+SET cursopreferido = '4'
+WHERE id = '7';
+
+UPDATE cadastro.gafanhotos
+SET cursopreferido = '5'
+WHERE id = '8';
+
+UPDATE cadastro.gafanhotos
+SET cursopreferido = '3'
+WHERE id = '9';
+
+UPDATE cadastro.gafanhotos
+SET cursopreferido = '30'
+WHERE id = '10';
