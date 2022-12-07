@@ -332,3 +332,13 @@ SELECT gafanhotos.nome, gafanhotos.cursopreferido, cursos.nome, cursos.ano
 FROM gafanhotos
 RIGHT OUTER JOIN cursos
 ON cursos.idcurso = gafanhotos.cursopreferido;
+
+CREATE TABLE assiste_curso (
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+data DATE,
+idgafanhoto INT,
+idcurso INT,
+FOREIGN KEY (idgafanhoto) REFERENCES gafanhotos (id),
+FOREIGN KEY (idcurso) REFERENCES cursos (idcurso)
+) DEFAULT CHARSET = utf8;
+
