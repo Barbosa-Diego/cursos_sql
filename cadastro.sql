@@ -342,3 +342,11 @@ FOREIGN KEY (idgafanhoto) REFERENCES gafanhotos (id),
 FOREIGN KEY (idcurso) REFERENCES cursos (idcurso)
 ) DEFAULT CHARSET = utf8;
 
+INSERT INTO assiste_curso 
+(data, idgafanhoto, idcurso)
+VALUES
+('2014-03-01','1','2'),
+('2015-12-22','3','6'),
+('2014-01-01','22','12'),
+('2016-05-12','1','19');
+
