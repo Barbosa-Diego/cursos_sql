@@ -350,8 +350,10 @@ VALUES
 ('2014-01-01','22','12'),
 ('2016-05-12','1','19');
 
-SELECT g.id, g.nome, a.idgafanhoto, a.idcurso, c.nome FROM gafanhotos g
+SELECT g.id AS 'Cadastro Gafanhoto' ,g.nome AS 'Nome', c.descricao AS 'Descrição'
+FROM gafanhotos g
 INNER JOIN assiste_curso a
 ON g.id = a.idgafanhoto
 INNER JOIN cursos c
-ON c.idcurso = a.idcurso;
+ON c.idcurso = a.idcurso
+ORDER BY nome;
