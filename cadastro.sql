@@ -357,3 +357,11 @@ ON g.id = a.idgafanhoto
 INNER JOIN cursos c
 ON c.idcurso = a.idcurso
 ORDER BY nome;
+
+/* Consulta encontrando nacionalidades que iniciem com "a" ou que terminei com "e" */
+SELECT nome,nacionalidade
+FROM gafanhotos
+WHERE nacionalidade
+LIKE 'b%' or
+nacionalidade LIKE '%e'
+ORDER BY nome;
