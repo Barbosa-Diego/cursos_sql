@@ -8,7 +8,7 @@ CREATE TABLE livros(
     sexo_autor ENUM('F','M'),
     numero_paginas INT,
     nome_editora VARCHAR(30) NOT NULL,
-    valor_livro NUMERIC(5,2),
+    valor_livro DECIMAL(5,2),
     uf_editora CHAR(2),
     ano_publicacao YEAR
 );
@@ -25,7 +25,7 @@ VALUES
 ('Estacio Querido','Geraldo Francisco','M','310','Insignia','100','ES','2015'),
 ('Pra sempre amigas','Leda Silva','F','510','Insignia','78.98','ES','2011'),
 ('Copas Inesqueciveis','Marco Alcantara','M','200','Larson','130.98','RS','2018'),
-('O poder da mente','Clara Mafra','F','120','Continental','56.58','SP','2017');
+('O poder da mente','Clara Mafra','F','120','Continental','56','SP','2017');
 
 SELECT nome_livro AS 'Livro', nome_autor AS 'Autor', sexo_autor AS 'Sexo do Autor', numero_paginas AS 'Numero de Páginas',
 nome_editora AS 'Editora', valor_livro AS 'Valor do Livro', uf_editora AS 'UF', ano_publicacao AS 'Publicado'
@@ -36,20 +36,20 @@ ORDER BY ano_publicacao;
 SELECT * FROM livros;
 
 /* Trazer o nome do livro e o nome da editora */
-SELECT nome_livro, nome_editora FROM livros;
+SELECT nome_livro AS 'Livro', nome_editora AS 'Editora' FROM livros;
 
 /* Trazer o nome do livro e a UF dos livros publicados por autores do sexo masculino. */
-SELECT nome_livro, uf_editora
+SELECT nome_livro AS 'Livro', uf_editora AS 'Editora'
 FROM livros
 WHERE sexo_autor = 'M';
 
 /* Trazer o nome do livro e o número de páginas dos livros publicados por autores do sexo feminino. */
-SELECT nome_livro, numero_paginas
+SELECT nome_livro AS 'Livro', numero_paginas AS 'Paginas'
 FROM livros
 WHERE sexo_autor = 'F';
 
 /* Trazer os valores dos livros das editoras de São Paulo. */
-SELECT valor_livro
+SELECT nome_livro AS 'Livro', valor_livro AS 'Valor'
 FROM livros
 WHERE uf_editora = 'SP';
 
@@ -58,3 +58,9 @@ SELECT * FROM livros
 WHERE sexo_autor = 'M' AND
 uf_editora IN ('SP','RJ');
 
+/* Também poderia ser feito da seguinte forma */
+SELECT * FROM livros
+WHERE sexo_autor = 'M'
+AND (
+uf_editora = 'SP' OR
+uf_editora = 'RJ');
