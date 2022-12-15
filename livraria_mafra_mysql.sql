@@ -1067,3 +1067,36 @@ VALUES
 (999,'Kennedy','lkennedyrq@edublogs.org','Masculino','Industrial','9/22/2004',48050,'Graphic Designer',2),
 (1000,'Howard','showardrr@addtoany.com','Masculino','Bebês','11/7/2003',148687,'General Manager',3);
 
+/* Considerando o que vc aprendeu sobre performance, resolva os exercicios abaixo */
+
+/* Traga os funcionarios que trabalhem, no departamento de filmes
+OU no departamento de roupas */
+
+SELECT departamento, COUNT(departamento)
+FROM funcionarios
+WHERE departamento IN ('Filmes','Roupas')
+GROUP BY departamento
+ORDER BY departamento DESC;
+
+SELECT nome, departamento, cargo
+FROM funcionarios
+WHERE departamento = 'Roupas' OR departamento = 'Filmes';
+
+/* O gestor de marketing pediu a lista das funcionarias que trabalhem no departamento de filmes
+ou no departamento lar. Ele necessita enviar um email para as colaboradoras desses dois setores */
+
+SELECT departamento, sexo, COUNT(departamento)
+FROM funcionarios
+WHERE sexo = 'Feminino' AND (departamento = 'Filmes' OR departamento = 'lar')
+GROUP BY departamento
+ORDER BY departamento;
+
+SELECT nome, email, departamento
+FROM funcionarios
+WHERE sexo = 'Feminino' AND (departamento = 'Filmes' OR departamento = 'Lar')
+ORDER BY departamento;
+
+/* Traga os funcionarios do sexo masculino ou os funcionarios que trabalhem no setor Jardim */
+
+SELECT * FROM funcionarios
+WHERE sexo = 'Masculino' or departamento = 'Jardim';
