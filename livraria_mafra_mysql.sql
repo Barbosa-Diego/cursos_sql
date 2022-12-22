@@ -88,6 +88,14 @@ cargo VARCHAR(100),
 idRegiao INT
 );
 
+/* Pode ser feito o insert dos dados abaixo, mas caso preferir pode ser acessado o diretório dumps e baixar o arquivo Dump20221222.sql
+   Optando por importar o arquivo do banco, seguir os comandos a seguir */
+   
+DROP TABLE livros;
+DROP TABLE funcionarios;
+
+sudo mysql -u root -p livraria < Dump20221222.sql
+
 INSERT INTO funcionarios
 (idFuncionario, nome, email, sexo, departamento, admissao, salario, cargo, idRegiao)
 VALUES
