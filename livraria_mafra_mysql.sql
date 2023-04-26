@@ -1108,3 +1108,130 @@ ORDER BY departamento;
 
 SELECT * FROM funcionarios
 WHERE sexo = 'Masculino' or departamento = 'Jardim';
+
+/* SELEÇÃO, PROJEÇÃO, JUNÇÃO */
+
+/* PROJEÇÃO -> É TUDO O QUE VOCÊ QUER MOSTRAR NA TELA */
+
+SELECT NOW(); AS DATA_ATUAL;
+
+SELECT 2 + 2 AS SOMA;
+
+/* SELEÇÃO -> é UM SUBCONJUNTO DO CONJUNTO TOTAL DE REGISTROS DE UMA TABELA
+SENDO A CLAUSULA DE SELEÇÃO WHERE */
+
+SELECT NOME, SEXO, EMAIL /* PROJEÇÃO */
+FROM CLIENTE /* ORIGEM */
+WHERE SEXO = 'F'; /* SELEÇÃO */
+
+/* JUNÇÃO -> JOIN */
+
+/* INNER JOIN */
+
+/* É POSSÍVEL ATRIBUIR APELIDO A TABELA, COLOCANDO UMA LETRA OU NOME EM FRENTE AO NOME */
+SELECT C.NOME, C.SEXO, E.BAIRRO, E.CIDADE, T.TIPO, T.NUMERO /* SELEÇÃO */
+FROM CLIENTE C /* ORIGEM */
+INNER JOIN ENDERECO E 
+ON C.IDCLINETE = E.ID_CLIENTE /* JUNÇÃO */
+INNER JOIN TELEFONE T
+ON C.IDCLIENTE = T.ID_CLIENTE; /* JUNÇÃO */
+
+/* Criar tabela para exercícios de funções de agregação */ 
+CREATE TABLE vendedores(
+    Id_vendedor INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(30),
+    sexo CHAR(1),
+    janeiro FLOAT(10,2),
+    fevereiro FLOAT(10,2),
+    marco FLOAT(10,2)
+);
+
+/* Inserir os dados */
+INSERT INTO vendedores
+(nome, sexo, janeiro, fevereiro, marco)
+VALUES
+('CARLOS','M',76234.78,88346.87,5756.90),
+('MARIA','F',5865.78,6768.87,4467.90),
+('ANTONIO','M',78769.78,6685.87,6664.90),
+('CLARA','F',5779.78,446886.87,8965.90),
+('ANDERSON','M',676545.78,77544.87,578665.90),
+('IVONE','F',57789.78,44774.87,68665.90),
+('JOAO','M',4785.78,66478.87,6887.90),
+('CELIA','F',89667.78,57654.87,5755.90);
+
+/* MAX - Traz o valor máximo em uma coluna */
+SELECT MAX(fevereiro) AS MAIOR_FEV
+FROM vendedores;
+
+
+/* MIN - Traz o valor mínimo em uma coluna */
+SELECT MIN(fevereiro) AS MENOR_FEV
+FROM vendedores;
+
+/* AVG - Traz o valor médio em uma coluna */
+SELECT AVG(fevereiro) AS MEDIA_FEV
+FROM vendedores;
+
+/* VARIAS FUNCOES */
+SELECT MAX(janeiro) AS MAX_JAN,
+       MIN(janeiro) AS MIN_JAN,
+      AVG(janeiro) AS MEDIA_JAN
+      FROM vendedores;
+    
+/* TRUNCATE - Limitar o número de casas decimais na média */  
+SELECT MAX(janeiro) AS MAX_JAN,
+       MIN(janeiro) AS MIN_JAN,
+      TRUNCATE(AVG(janeiro),2) AS MEDIA_JAN
+      FROM vendedores;
+
+/* AGREGANDO COM SUM() */
+SELECT SUM(janeiro) AS TOTAL_JAN
+FROM vendedores;
+
+SELECT SUM(janeiro) AS TOTAL_JAN,
+      SUM(fevereiro) AS TOTAL_FEV,
+      SUM(marco) AS TOTAL_MAR
+FROM vendedores;
+
+/* Venda por sexo */
+SELECT sexo, SUM(marco) AS TOTAL_MARCO
+FROM vendedores
+GROUP BY sexo;
+
+/* Utilizando subqueries */
+/* VENDEDOR QUE VENDEU MENOS EM MARCO E O SEU NOME */
+SELECT nome, marco FROM vendedores
+WHERE marco = (SELECT MIN(marco) FROM vendedores);
+
+/* NOME E O VALOR QUE VENDEU MAIS EM MARCO */
+SELECT nome, marco FROM vendedores
+WHERE marco = (SELECT MAX(marco) FROM vendedores);
+
+/* QUEM VENDEU MENOS QUE O VALOR MEDIO DE FEV */
+SELECT nome, fevereiro FROM vendedores
+WHERE fevereiro < (SELECT AVG(fevereiro) FROM vendedores);
+
+/* QUEM VENDEU MAIS QUE O VALOR MEDIO DE FEV */
+SELECT nome, fevereiro FROM vendedores
+WHERE fevereiro > (SELECT AVG(fevereiro) FROM vendedores);
+
+/* Soma das colunas e média junto com a formatação de truncate */
+SELECT nome,
+   janeiro,
+   fevereiro,
+   marco,
+   (janeiro+fevereiro+marco) AS 'Total', 
+   TRUNCATE(((janeiro+fevereiro+marco)/3),2) AS 'Media'
+FROM vendedores;
+
+/* Aplicando operador % */
+SELECT nome,
+   janeiro,
+   fevereiro,
+   marco,
+   (janeiro+fevereiro+marco) AS 'Total',
+   (janeiro+fevereiro+marco) * .25 AS 'Desconto', 
+   TRUNCATE(((janeiro+fevereiro+marco)/3),2) AS 'Media'
+FROM vendedores order by(nome);
+
+
