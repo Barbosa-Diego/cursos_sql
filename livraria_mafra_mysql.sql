@@ -1215,7 +1215,7 @@ WHERE fevereiro < (SELECT AVG(fevereiro) FROM vendedores);
 SELECT nome, fevereiro FROM vendedores
 WHERE fevereiro > (SELECT AVG(fevereiro) FROM vendedores);
 
-/* Soma das colunas e média junto com a formatação de truncate */
+/* Soma das colunas e média junto com a formatação usando truncate */
 SELECT nome,
    janeiro,
    fevereiro,
@@ -1233,5 +1233,96 @@ SELECT nome,
    (janeiro+fevereiro+marco) * .25 AS 'Desconto', 
    TRUNCATE(((janeiro+fevereiro+marco)/3),2) AS 'Media'
 FROM vendedores order by(nome);
+
+/* Contraints nomeadas */
+CREATE DATABASE comercio;
+
+CREATE TABLE CLIENTE (
+   IDCLIENTE INT,
+   NOME VARCHAR(30) NOT NULL
+);
+
+CREATE TABLE TELEFONE (
+   IDTELEFONE INT,
+   TIPO CHAR(3) NOT NULL,
+   NUMERO VARCHAR(10) NOT NULL,
+   ID_CLIENTE INT
+);
+
+ALTER TABLE CLIENTE ADD CONSTRAINT PK_CLIENTE
+PRIMARY KEY(IDCLIENTE);
+
+ALTER TABLE TELEFONE ADD CONSTRAINT FK_CLIENTE_TELEFONE
+FOREIGN KEY(ID_CLIENTE) REFERENCES CLIENTE(IDCLIENTE);
+
+/* Verificar dicionário de dados, cada banco pode ter uma nomenclatura diferente para a tabela de constraints */
+
+SELECT CONSTRAINT_SCHEMA AS 'BANCO',
+       TABLE_NAME AS 'TABELA',
+       CONSTRAINT_NAME AS 'NOME',
+       CONSTRAINT_TYPE AS 'TIPO'
+       FROM TABLE_CONSTRAINTS WHERE CONSTRAINT_SCHEMA = 'comercio';
+
+/* Apagar uma constraint */
+
+ALTER TABLE TELEFONE
+DROP FOREIGN KEY FK_CLIENTE_TELEFONE;
+
+/* Estrutura de uma Trigger */
+
+CREATE TRIGGER NOME
+BEFORE/AFTER INSERT/DELETE/UPDATE ON TABELA
+FOR EACH ROW (PARA CADA LINHA)
+BEGIN
+
+   QUALQUER COMANDO SQL
+
+END
+
+/* Criando cenário para uso da trigger */
+
+USE comercio;
+
+CREATE TABLE USUARIO(
+   IDUSUARIO INT PRIMARY KEY AUTO_INCREMENT,
+   NOME VARCHAR(30),
+   LOGIN VARCHAR(30),
+   SENHA VARCHAR(100)
+);
+
+CREATE TABLE BKP_USUARIO(
+   IDBACKUP INT PRIMARY KEY AUTO_INCREMENT,
+   IDUSUARIO INT,
+   NOME VARCHAR(30),
+   LOGIN VARCHAR(30)
+);
+
+/* Criando a trigger */
+
+DELIMITER $
+
+CREATE TRIGGER BACKUP_USUARIO
+BEFORE DELETE ON USUARIO
+FOR EACH ROW
+BEGIN
+
+   INSERT INTO BKP_USUARIO VALUES
+   (NULL, OLD.IDUSUARIO, OLD.NOME, OLD.LOGIN);
+
+END
+$
+
+
+INSERT INTO USUARIO
+(NOME, LOGIN, SENHA)
+VALUES
+('Diego', 'diego', '12345'),
+('Vlad', 'vlad', '12345'),
+('Billy', 'billy', '12345'),
+('Roger', 'roger', '12345'),
+('Udyr', 'udyr', '12345'),
+('Pebleu', 'pebleu', '12345');
+
+
 
 
