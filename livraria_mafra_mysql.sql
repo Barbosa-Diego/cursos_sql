@@ -1269,7 +1269,11 @@ ALTER TABLE TELEFONE
 DROP FOREIGN KEY FK_CLIENTE_TELEFONE;
 
 /* Estrutura de uma Trigger */
-
+/* BEFORE - Executa a ação da trigger antes de ser feito a alteração nos dados
+   AFTER - Executa a operação após ser feito a alteração dos dados
+   NEW - Usar em momentos de novos valores
+   OLD - Usar em momentos de valores antigos/atuais
+ */
 CREATE TRIGGER NOME
 BEFORE/AFTER INSERT/DELETE/UPDATE ON TABELA
 FOR EACH ROW (PARA CADA LINHA)
@@ -1297,7 +1301,17 @@ CREATE TABLE BKP_USUARIO(
    LOGIN VARCHAR(30)
 );
 
-/* Criando a trigger */
+INSERT INTO USUARIO
+(NOME, LOGIN, SENHA)
+VALUES
+('Diego', 'diego', '12345'),
+('Vlad', 'vlad', '12345'),
+('Billy', 'billy', '12345'),
+('Roger', 'roger', '12345'),
+('Udyr', 'udyr', '12345'),
+('Pebleu', 'pebleu', '12345');
+
+/* Criando a trigger, após ser deletado uma linha na tabela USUARIO, vai ser fei */
 
 DELIMITER $
 
@@ -1313,15 +1327,6 @@ END
 $
 
 
-INSERT INTO USUARIO
-(NOME, LOGIN, SENHA)
-VALUES
-('Diego', 'diego', '12345'),
-('Vlad', 'vlad', '12345'),
-('Billy', 'billy', '12345'),
-('Roger', 'roger', '12345'),
-('Udyr', 'udyr', '12345'),
-('Pebleu', 'pebleu', '12345');
 
 
 
